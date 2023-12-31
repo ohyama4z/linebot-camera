@@ -13,22 +13,18 @@ export class BotService {
       return;
     }
 
-    await Promise.all(
-      events.map((event) => {
-        if (event.type !== "message" || event.message.type !== "text") {
-          return;
-        }
-
-        return client.replyMessage({
+    for (const event of events) {
+      if (event.type === "message") {
+        client.replyMessage({
           replyToken: event.replyToken,
           messages: [
             {
               type: "text",
-              text: event.message.text,
+              text: event.message.type === "text" ? event.message.text : "test",
             },
           ],
         });
-      }),
-    );
+      }
+    }
   }
 }

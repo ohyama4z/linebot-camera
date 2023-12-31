@@ -8,8 +8,8 @@ export class ConfigService {
     const configService = new NestConfigService();
     const clinetConfig: ClientConfig = {
       channelAccessToken:
-        configService.get<string>("LINE_CHANNEL_ACCESS_TOKEN") || "",
-      channelSecret: configService.get<string>("LINE_CHANNEL_SECRET") || "",
+        configService.get<string>("CHANNEL_ACCESS_TOKEN") || "",
+      channelSecret: configService.get<string>("CHANNEL_SECRET") || "",
     };
     return new messagingApi.MessagingApiClient(clinetConfig);
   }
