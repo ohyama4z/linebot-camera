@@ -29,6 +29,15 @@
       "quoteProperties": "asNeeded",
       "bracketSpacing": true,
       "bracketSameLine": false
+    },
+    "parser": {
+      // https://biomejs.dev/blog/biome-v1/#support-for-function-class-parameter-decorators
+      "unsafeParameterDecoratorsEnabled": true
+    }
+  },
+  "json": {
+    "parser": {
+      "allowComments": true
     }
   }
 }

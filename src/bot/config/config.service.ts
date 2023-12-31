@@ -6,11 +6,11 @@ import { ConfigService as NestConfigService } from "@nestjs/config";
 export class ConfigService {
   createBotClient() {
     const configService = new NestConfigService();
-    const token: ClientConfig = {
+    const clinetConfig: ClientConfig = {
       channelAccessToken:
         configService.get<string>("LINE_CHANNEL_ACCESS_TOKEN") || "",
       channelSecret: configService.get<string>("LINE_CHANNEL_SECRET") || "",
     };
-    return new messagingApi.MessagingApiClient(token);
+    return new messagingApi.MessagingApiClient(clinetConfig);
   }
 }
