@@ -12,7 +12,7 @@ export class CameraService {
       quality: 100,
       output: "jpeg",
       device: "2",
-      callbackReturn: "location",
+      callbackReturn: "buffer",
       verbose: false,
     };
 
