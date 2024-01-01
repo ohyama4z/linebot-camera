@@ -48,12 +48,12 @@ export class BotService {
     for (const event of events) {
       if (event.type === "message" && event.message.type === "text") {
         if (this.isCameraCommand(event.message.text)) {
-          client.replyMessage({
-            replyToken: event.replyToken,
+          client.pushMessage({
+            to: event.source.userId ?? "",
             messages: [
               {
                 type: "text",
-                text: "撮影しています",
+                text: "ホワイトボードを撮影中...",
               },
             ],
           });
