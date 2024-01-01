@@ -6,8 +6,8 @@ import { Camera } from "./camera";
 export class CameraService {
   createWebcam() {
     const opts: WebcamOptions = {
-      width: 1280,
-      height: 720,
+      width: 640,
+      height: 480,
       delay: 0,
       quality: 100,
       output: "jpeg",
