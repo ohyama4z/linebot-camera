@@ -48,8 +48,17 @@ export class BotService {
     for (const event of events) {
       if (event.type === "message" && event.message.type === "text") {
         if (this.isCameraCommand(event.message.text)) {
+          let to = "";
+          if (event.source.type === "user") {
+            to = event.source.userId;
+          } else if (event.source.type === "group") {
+            to = event.source.groupId;
+          } else if (event.source.type === "room") {
+            to = event.source.roomId;
+          }
+
           client.pushMessage({
-            to: event.source.userId ?? "",
+            to,
             messages: [
               {
                 type: "text",
@@ -76,16 +85,6 @@ export class BotService {
           });
           return;
         }
-
-        client.replyMessage({
-          replyToken: event.replyToken,
-          messages: [
-            {
-              type: "text",
-              text: event.message.type === "text" ? event.message.text : "test",
-            },
-          ],
-        });
       }
     }
   }
