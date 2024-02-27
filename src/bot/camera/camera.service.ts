@@ -11,7 +11,6 @@ export class CameraService {
       delay: 0,
       quality: 100,
       output: "jpeg",
-      device: "2",
       callbackReturn: "buffer",
       verbose: false,
     };

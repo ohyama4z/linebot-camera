@@ -1,9 +1,9 @@
-import { WebcamOptions, WindowsWebcam } from "node-webcam";
+import { FSWebcam, WebcamOptions } from "node-webcam";
 export class Camera {
-  private readonly webcam: WindowsWebcam;
+  private readonly webcam: FSWebcam;
 
   constructor(private readonly opts: WebcamOptions) {
-    this.webcam = new WindowsWebcam(this.opts);
+    this.webcam = new FSWebcam(this.opts);
   }
 
   async capture(path: string | null = null): Promise<string | Buffer> {
