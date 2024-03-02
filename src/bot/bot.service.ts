@@ -1,5 +1,6 @@
 import { WebhookEvent, WebhookRequestBody } from "@line/bot-sdk";
 import { Injectable } from "@nestjs/common";
+import sharp from "sharp";
 import { CameraService } from "./camera/camera.service";
 import { ConfigService } from "./config/config.service";
 import { Store } from "./store/store";
@@ -71,7 +72,18 @@ export class BotService {
             console.log(`image-string: ${src}`);
             return;
           }
-          const url = await this.store.getUrl(src);
+
+          const cropped = await sharp(src)
+            .extract({
+              width: 400,
+              height: 500,
+              left: 650,
+              top: 450,
+            })
+            .resize(800, 1000)
+            .toBuffer();
+
+          const url = await this.store.getUrl(cropped);
 
           client.replyMessage({
             replyToken: event.replyToken,
