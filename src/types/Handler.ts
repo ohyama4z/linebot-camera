@@ -7,7 +7,8 @@ import {
 
 export type HandlerResponse = ReplyMessageResponse | PushMessageResponse;
 
-export type Handler = (
+export type Handler<T extends unknown[] = []> = (
   event: MessageEvent,
   client: MessagingApiClient,
+  ...args: T
 ) => Promise<HandlerResponse>;

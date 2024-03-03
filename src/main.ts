@@ -1,10 +1,13 @@
 import env from "@/../env";
-import { parse } from "@/CommandParser/CommandParser";
-import { helpCommandHandler } from "@/Handler/HelpCommandHandler/HelpCommandHandler";
+import { parse } from "@/commandParser/CommandParser";
+import { cameraCommandHandler } from "@/handler/CameraCommandHandler/CameraCommandHandler";
+import { helpCommandHandler } from "@/handler/HelpCommandHandler/HelpCommandHandler";
+import { ImageRepository } from "@/infrastructure/ImageRepository";
+import { createCamera } from "@/model/Camera/CameraService";
+import { HandlerResponse } from "@/types/Handler";
 import { serve } from "@hono/node-server";
 import { ClientConfig, WebhookRequestBody, messagingApi } from "@line/bot-sdk";
 import { Hono } from "hono";
-import { HandlerResponse } from "./types/Handler";
 
 const app = new Hono();
 
@@ -34,7 +37,12 @@ app.get("/bot", async (c) => {
       }
 
       if (command === "CameraCommand") {
-        return acc;
+        const camera = createCamera();
+        const imageRepository = new ImageRepository();
+        return [
+          ...acc,
+          cameraCommandHandler(event, lineBotClient, camera, imageRepository),
+        ];
       }
 
       if (command === "DiscordTransferCommand") {

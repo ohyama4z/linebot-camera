@@ -14,9 +14,30 @@ const command = {
   DISCORD_TRANSFER_PREFIX: [""],
 } as const;
 
+const camera = {
+  // カメラの解像度
+  WIDTH: 1920,
+  HEIGHT: 1080,
+
+  // 画像の切り抜き範囲
+  extractOption: {
+    WIDTH: 1920,
+    HEIGHT: 1080,
+    X: 0,
+    Y: 0,
+  },
+
+  // 切り抜き後の画像のリサイズ設定
+  zoomOption: {
+    WIDTH: 1920,
+    HEIGHT: 1080,
+  },
+};
+
 const env = {
   line,
   command,
+  camera,
   aws,
 } as const;
 
