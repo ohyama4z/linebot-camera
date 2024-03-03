@@ -10,7 +10,7 @@ export class Camera implements Webcam {
 
   async capture(): Promise<Buffer> {
     return new Promise((resolve, reject) => {
-      this.webcam.capture(null, (err, data) => {
+      this.webcam.capture("test.jpg", (err, data) => {
         if (err != null) {
           reject(err);
           return;
