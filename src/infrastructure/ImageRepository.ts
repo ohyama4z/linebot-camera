@@ -1,6 +1,6 @@
-import { Repository } from "@/types/Repository";
+import env from "@/env/env";
+import { Repository } from "@/src/types/Repository";
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
-import env from "@env/env";
 import { v4 as uuidv4 } from "uuid";
 
 export class ImageRepository implements Repository {

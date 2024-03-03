@@ -1,4 +1,4 @@
-import { Webcam } from "@/types/Webcam";
+import { Webcam } from "@/src/types/Webcam";
 import { FSWebcam, WebcamOptions } from "node-webcam";
 
 export class Camera implements Webcam {

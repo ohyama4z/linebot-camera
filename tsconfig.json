@@ -10,7 +10,7 @@
     "target": "ESNext",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "incremental": true,
     "skipLibCheck": true,
     "strictBindCallApply": true,
@@ -26,8 +26,7 @@
     "resolveJsonModule": true,
     "useDefineForClassFields": true,
     "paths": {
-      "@/*": ["src/*"],
-      "@env/*": ["env/*"]
+      "@/*": ["*"],
     }
   },
   "include": ["src/**/*.ts", "env/**/*.ts"],

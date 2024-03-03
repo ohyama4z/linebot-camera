@@ -1,6 +1,6 @@
-import { Camera } from "@/model/Camera/Camera";
-import { Handler } from "@/types/Handler";
-import { Repository } from "@/types/Repository";
+import { Camera } from "@/src/model/Camera/Camera";
+import { Handler } from "@/src/types/Handler";
+import { Repository } from "@/src/types/Repository";
 import { extract } from "./ImageExtractor";
 
 export const cameraCommandHandler: Handler<[Camera, Repository]> = async (

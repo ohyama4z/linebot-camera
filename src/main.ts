@@ -1,10 +1,10 @@
-import { parse } from "@/commandParser/CommandParser";
-import { cameraCommandHandler } from "@/handler/CameraCommandHandler/CameraCommandHandler";
-import { helpCommandHandler } from "@/handler/HelpCommandHandler/HelpCommandHandler";
-import { ImageRepository } from "@/infrastructure/ImageRepository";
-import { createCamera } from "@/model/Camera/CameraService";
-import { HandlerResponse } from "@/types/Handler";
-import env from "@env/env";
+import env from "@/env/env";
+import { parse } from "@/src/commandParser/CommandParser";
+import { cameraCommandHandler } from "@/src/handler/CameraCommandHandler/CameraCommandHandler";
+import { helpCommandHandler } from "@/src/handler/HelpCommandHandler/HelpCommandHandler";
+import { ImageRepository } from "@/src/infrastructure/ImageRepository";
+import { createCamera } from "@/src/model/Camera/CameraService";
+import { HandlerResponse } from "@/src/types/Handler";
 import { serve } from "@hono/node-server";
 import { ClientConfig, WebhookRequestBody, messagingApi } from "@line/bot-sdk";
 import { Hono } from "hono";
@@ -19,7 +19,7 @@ const lineBotConfig: ClientConfig = {
 };
 const lineBotClient = new messagingApi.MessagingApiClient(lineBotConfig);
 
-app.get("/bot", async (c) => {
+app.post("/bot", async (c) => {
   const body: WebhookRequestBody = await c.req.json();
   await Promise.all(
     body.events.reduce<Promise<HandlerResponse>[]>((acc, event) => {

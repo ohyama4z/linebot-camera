@@ -1,5 +1,5 @@
-import { Handler } from "@/types/Handler";
-import env from "@env/env";
+import env from "@/env/env";
+import { Handler } from "@/src/types/Handler";
 
 export const getHelpText = () => {
   const cameraCommandText = env.command.CAMERA_COMMAND.join(", ");

@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
     "dev": "start:dev",
     "start": "tsx src/main.ts",
     "start:dev": "tsx watch src/main.ts",
@@ -24,6 +24,7 @@
     "hono": "^4.0.8",
     "node-webcam": "^0.8.2",
     "sharp": "^0.33.2",
+    "tsc-alias": "^1.8.8",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
