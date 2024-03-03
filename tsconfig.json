@@ -30,6 +30,6 @@
       "@env/*": ["env/*"]
     }
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "env/**/*.ts"],
   "exclude": ["dist", "node_modules"]
 }
