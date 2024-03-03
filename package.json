@@ -6,11 +6,11 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "tsx",
+    "build": "tsc",
     "dev": "start:dev",
     "start": "tsx src/main.ts",
     "start:dev": "tsx watch src/main.ts",
-    "start:prod": "node dist/main",
+    "start:prod": "node dist/src/main.js",
     "lint": "biome lint ./src",
     "lint-fix": "biome check --apply ./src"
   },
