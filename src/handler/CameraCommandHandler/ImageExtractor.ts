@@ -1,4 +1,4 @@
-import env from "@/../env";
+import env from "@env/env";
 import sharp from "sharp";
 
 export const extract = async (src: Buffer): Promise<Buffer> => {

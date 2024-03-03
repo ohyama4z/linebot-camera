@@ -1,5 +1,5 @@
-import env from "@/../env";
 import { Command } from "@/types/Command";
+import env from "@env/env";
 
 const isCameraCommand = (text: string): boolean => {
   return env.command.CAMERA_COMMAND.some((command) => command === text);

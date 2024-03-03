@@ -1,4 +1,4 @@
-import env from "@/../env";
+import env from "@env/env";
 import { WebcamOptions } from "node-webcam";
 import { Camera } from "./Camera";
 

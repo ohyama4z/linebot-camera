@@ -1,10 +1,10 @@
-import env from "@/../env";
 import { parse } from "@/commandParser/CommandParser";
 import { cameraCommandHandler } from "@/handler/CameraCommandHandler/CameraCommandHandler";
 import { helpCommandHandler } from "@/handler/HelpCommandHandler/HelpCommandHandler";
 import { ImageRepository } from "@/infrastructure/ImageRepository";
 import { createCamera } from "@/model/Camera/CameraService";
 import { HandlerResponse } from "@/types/Handler";
+import env from "@env/env";
 import { serve } from "@hono/node-server";
 import { ClientConfig, WebhookRequestBody, messagingApi } from "@line/bot-sdk";
 import { Hono } from "hono";

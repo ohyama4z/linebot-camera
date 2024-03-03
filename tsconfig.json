@@ -26,7 +26,8 @@
     "resolveJsonModule": true,
     "useDefineForClassFields": true,
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@env/*": ["env/*"]
     }
   },
   "include": ["src/**/*.ts"],
