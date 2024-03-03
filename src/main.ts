@@ -4,6 +4,7 @@ import { helpCommandHandler } from "@/Handler/HelpCommandHandler/HelpCommandHand
 import { serve } from "@hono/node-server";
 import { ClientConfig, WebhookRequestBody, messagingApi } from "@line/bot-sdk";
 import { Hono } from "hono";
+import { HandlerResponse } from "./types/Handler";
 
 const app = new Hono();
 
@@ -17,26 +18,34 @@ const lineBotClient = new messagingApi.MessagingApiClient(lineBotConfig);
 
 app.get("/bot", async (c) => {
   const body: WebhookRequestBody = await c.req.json();
+  await Promise.all(
+    body.events.reduce<Promise<HandlerResponse>[]>((acc, event) => {
+      if (event.type !== "message" || event.message.type !== "text") {
+        return acc;
+      }
 
-  const result = await Promise.all(
-    body.events.reduce(
-      (p, event) => {
-        if (event.type !== "message" || event.message.type !== "text") {
-          return p;
-        }
+      const command = parse(event.message.text);
+      if (command === null) {
+        return acc;
+      }
 
-        const command = parse(event.message.text);
-        if (command === "HelpCommand") {
-          return [...p, helpCommandHandler(event, lineBotClient)];
-        }
+      if (command === "HelpCommand") {
+        return [...acc, helpCommandHandler(event, lineBotClient)];
+      }
 
-        return p;
-      },
-      [] as Promise<messagingApi.ReplyMessageResponse>[],
-    ),
+      if (command === "CameraCommand") {
+        return acc;
+      }
+
+      if (command === "DiscordTransferCommand") {
+        return acc;
+      }
+
+      throw new Error("Unknown command");
+    }, []),
   );
 
-  return c.json(result);
+  return c.text("OK");
 });
 
 const port = 3000;

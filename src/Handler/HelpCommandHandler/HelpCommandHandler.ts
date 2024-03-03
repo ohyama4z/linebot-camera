@@ -1,5 +1,5 @@
 import env from "@/../env";
-import { MessageEvent, messagingApi } from "@line/bot-sdk";
+import { Handler } from "@/types/Handler";
 
 export const getHelpText = () => {
   const cameraCommandText = env.command.CAMERA_COMMAND.join(", ");
@@ -8,14 +8,11 @@ export const getHelpText = () => {
     コマンド: 
     - help: このヘルプを表示します
     - whiteboard: ホワイトボードの画像を撮影します
-      エイリアス: ${cameraCommandText}
+      [Alias] ${cameraCommandText}
   `;
 };
 
-export const helpCommandHandler = async (
-  event: MessageEvent,
-  client: messagingApi.MessagingApiClient,
-) => {
+export const helpCommandHandler: Handler = async (event, client) => {
   return await client.replyMessage({
     replyToken: event.replyToken,
     messages: [{ type: "text", text: getHelpText() }],
