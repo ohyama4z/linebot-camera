@@ -5,11 +5,11 @@ export const getHelpText = () => {
   const cameraCommandText = env.command.CAMERA_COMMAND.join(", ");
 
   return `
-    コマンド: 
-    - help: このヘルプを表示します
-    - whiteboard: ホワイトボードの画像を撮影します
-      [Alias] ${cameraCommandText}
-  `;
+コマンド: 
+- help: このヘルプを表示します
+- whiteboard: ホワイトボードの画像を撮影します
+  [Alias] ${cameraCommandText}
+`;
 };
 
 export const helpCommandHandler: Handler = async (event, client) => {
