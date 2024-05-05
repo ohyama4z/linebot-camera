@@ -11,6 +11,7 @@ const aws = {
 
 const command = {
   CAMERA_COMMAND: [""],
+  CAMERA_FULL_OPTION: [""],
   DISCORD_TRANSFER_PREFIX: [""],
 } as const;
 

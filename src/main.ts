@@ -1,5 +1,5 @@
 import env from "@/env/env";
-import { parse } from "@/src/commandParser/CommandParser";
+import { parseCommand } from "@/src/commandParser/CommandParser";
 import { cameraCommandHandler } from "@/src/handler/CameraCommandHandler/CameraCommandHandler";
 import { helpCommandHandler } from "@/src/handler/HelpCommandHandler/HelpCommandHandler";
 import { ImageRepository } from "@/src/infrastructure/ImageRepository";
@@ -8,6 +8,7 @@ import { HandlerResponse } from "@/src/types/Handler";
 import { serve } from "@hono/node-server";
 import { ClientConfig, WebhookRequestBody, messagingApi } from "@line/bot-sdk";
 import { Hono } from "hono";
+import { cameraOptions } from "./commandParser/CameraOptionParser";
 
 const app = new Hono();
 
@@ -27,7 +28,8 @@ app.post("/bot", async (c) => {
         return acc;
       }
 
-      const command = parse(event.message.text);
+      const command = parseCommand(event.message.text);
+      const [_, ...options] = event.message.text.split(" ");
       if (command === null) {
         return acc;
       }
@@ -37,11 +39,18 @@ app.post("/bot", async (c) => {
       }
 
       if (command === "CameraCommand") {
+        const option = cameraOptions(options);
         const camera = createCamera();
         const imageRepository = new ImageRepository();
         return [
           ...acc,
-          cameraCommandHandler(event, lineBotClient, camera, imageRepository),
+          cameraCommandHandler(
+            event,
+            lineBotClient,
+            camera,
+            imageRepository,
+            option,
+          ),
         ];
       }
 
