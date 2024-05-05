@@ -16,7 +16,7 @@ const isDiscordTransferCommand = (text: string): boolean => {
 };
 
 export const parseCommand = (text: string): Command | null => {
-  const command = text.split(" ")[0];
+  const command = text.split(/(?=\s:)/)[0];
   if (isHelpCommand(command)) {
     return "HelpCommand";
   }
