@@ -29,7 +29,7 @@ app.post("/bot", async (c) => {
       }
 
       const command = parseCommand(event.message.text);
-      const [_, ...options] = event.message.text.split(/(?=\s:)/);
+      const [_, ...options] = event.message.text.split(/\s/);
       if (command === null) {
         return acc;
       }
